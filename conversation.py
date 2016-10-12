@@ -4,23 +4,21 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Conversa
     MessageHandler
 import telegram
 import sqlite3
-
+# Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.DEBUG)
+
 logger = logging.getLogger(__name__)
 
-telebot = telegram.Bot('249430682:AAGPbuoGYllOPbPsZyFkuJHY7ooI_aLsAVU')
 LOCATION = range(4)
 
 def start(bot, update):
-    chat_id = update.message.chat_id
-    location_keyboard = telegram.KeyboardButton(text="send_location", request_location=True)
-    contact_keyboard = telegram.KeyboardButton(text="send_contact", request_contact=True)
-    custom_keyboard = [[location_keyboard, contact_keyboard]]
+    location_keyboard = telegram.KeyboardButton(text="location", request_location=True)
+    contact_keyboard = telegram.KeyboardButton(text="contact", request_contact=True)
+    open_location = telegram.KeyboardButton(text="/location")
+    custom_keyboard = [[location_keyboard, contact_keyboard, open_location],
+                       [location_keyboard, contact_keyboard, open_location]]
     reply_markup = telegram.ReplyKeyboardMarkup(custom_keyboard, resize_keyboard=True)
-    bot.sendMessage(chat_id=chat_id,
-                    text="Would mind to share location and contact with me ?",
-                    reply_markup=reply_markup)
     return LOCATION
 
 
@@ -45,9 +43,8 @@ def location(bot, update):
         city = row[3]
         face = row[6]
         situat = row[7]
-        update.message.reply_text(name + ', ' + city + ', ' + address + ', ' + face + ', ' + situat)
+        update.message.reply_text(name+', '+city+', '+address+', '+face+', '+situat)
         bot.send_location(chat_id, lat_atm, lng_atm)
-
 
 def cancel(bot, update):
     return ConversationHandler.END
