@@ -26,12 +26,13 @@ logo_clock = emojize(":clock3:", use_aliases=True)
 
 def start(bot, update):
     chat_id = update.message.chat_id
-    location_keyboard = telegram.KeyboardButton(text="send_location", request_location=True)
+    location_keyboard = telegram.KeyboardButton(text=logo_bank+"Банкоматы", request_location=True)
     contact_keyboard = telegram.KeyboardButton(text="send_contact", request_contact=True)
-    custom_keyboard = [[location_keyboard, contact_keyboard]]
+    ce_keyboard = telegram.KeyboardButton(text=logo_ce+"Курсы валют")
+    custom_keyboard = [[location_keyboard, contact_keyboard],[ce_keyboard]]
     reply_markup = telegram.ReplyKeyboardMarkup(custom_keyboard, resize_keyboard=True)
     bot.sendMessage(chat_id=chat_id,
-                    text="Would mind to share location and contact with me ?",
+                    text="Отправьте свое местоположение чтобы получить список ближайших банокматов",
                     reply_markup=reply_markup)
     return LOCATION
 
@@ -57,7 +58,7 @@ def location(bot, update):
         city = row[3]
         face = row[6]
         situat = row[7]
-        update.message.reply_text(name + ', ' + city + ', ' + address + ', ' + face + ', ' + situat)
+        update.message.reply_text(logo_atm + ', ' + city + ', ' + address + ', '+logo_clock + face + ', ' + situat)
         bot.send_location(chat_id, lat_atm, lng_atm)
     c.close()
     conn.close()
