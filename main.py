@@ -7,7 +7,7 @@ import sqlite3
 import datetime
 
 now = datetime.datetime.now()
-date = str(now.strftime("%d-%m-%Y"))
+date = str(now.strftime("%d%m%Y"))
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.DEBUG)
@@ -59,6 +59,8 @@ def location(bot, update):
         situat = row[7]
         update.message.reply_text(name + ', ' + city + ', ' + address + ', ' + face + ', ' + situat)
         bot.send_location(chat_id, lat_atm, lng_atm)
+    c.close()
+    conn.close()
 
 
 def cancel(bot, update):
