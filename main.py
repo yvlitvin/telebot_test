@@ -30,7 +30,7 @@ def start(bot, update):
     location_keyboard = telegram.KeyboardButton(text=logo_bank+"Банкоматы", request_location=True)
     contact_keyboard = telegram.KeyboardButton(text="send_contact", request_contact=True)
     #ce_keyboard = InlineKeyboardButton(logo_ce+"Курсы валют", callback_data=currency)
-    custom_keyboard = [[location_keyboard, contact_keyboard]]
+    custom_keyboard = [[location_keyboard, contact_keyboard], ['/currency']]
     reply_markup = telegram.ReplyKeyboardMarkup(custom_keyboard, resize_keyboard=True)
     bot.sendMessage(chat_id=chat_id,
                     text="Нажмите Банкоматы, чтобы получить список ближайших банокматов\n нажмите, чтобы",
@@ -78,7 +78,6 @@ def currency(bot, update):
         sale_sel = row[2]
         buy = row[3]
         bnbu = row[4]
-        print(curr, sale_sel, buy, bnbu)
         bot.sendMessage(chat_id=chat_id, text=logo_ce + ' ' + curr + ' ' + sale_sel + ' ' + buy + ' ' + bnbu)
 
 
