@@ -1,5 +1,6 @@
 import logging
 from emoji import emojize
+from telegram import InlineKeyboardButton
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, ConversationHandler, RegexHandler, Filters, \
     MessageHandler
 import telegram
@@ -28,11 +29,11 @@ def start(bot, update):
     chat_id = update.message.chat_id
     location_keyboard = telegram.KeyboardButton(text=logo_bank+"Банкоматы", request_location=True)
     contact_keyboard = telegram.KeyboardButton(text="send_contact", request_contact=True)
-    ce_keyboard = telegram.KeyboardButton(text=logo_ce+"Курсы валют")
-    custom_keyboard = [[location_keyboard, contact_keyboard],[ce_keyboard]]
+    #ce_keyboard = InlineKeyboardButton(logo_ce+"Курсы валют", callback_data=currency)
+    custom_keyboard = [[location_keyboard, contact_keyboard]]
     reply_markup = telegram.ReplyKeyboardMarkup(custom_keyboard, resize_keyboard=True)
     bot.sendMessage(chat_id=chat_id,
-                    text="Отправьте свое местоположение чтобы получить список ближайших банокматов",
+                    text="Нажмите Банкоматы, чтобы получить список ближайших банокматов\n нажмите, чтобы",
                     reply_markup=reply_markup)
     return LOCATION
 
@@ -67,6 +68,19 @@ def location(bot, update):
 def cancel(bot, update):
     return ConversationHandler.END
 
+def currency(bot, update):
+    chat_id = update.message.chat_id
+    conn = sqlite3.connect("atm_numbers.sqlite")
+    c = conn.cursor()
+    c.execute('SELECT * FROM currency where date = ' + date)
+    for row in c:
+        curr = row[1]
+        sale_sel = row[2]
+        buy = row[3]
+        bnbu = row[4]
+        print(curr, sale_sel, buy, bnbu)
+        bot.sendMessage(chat_id=chat_id, text=logo_ce + ' ' + curr + ' ' + sale_sel + ' ' + buy + ' ' + bnbu)
+
 
 def error(bot, update, error):
     logger.warn('Update "%s" caused error "%s"' % (update, error))
@@ -100,6 +114,7 @@ def main():
     # log all errors
     dp.add_error_handler(error)
     updater.dispatcher.add_handler(CommandHandler('start', start))
+    updater.dispatcher.add_handler(CommandHandler('currency', currency))
     # Start the Bot
     updater.start_polling()
 
