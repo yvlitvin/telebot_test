@@ -32,10 +32,17 @@ for row in table.find_all('tr')[1:]:
     buy = col[1].string.strip()
     sell = col[2].string.strip()
     nbu = col[3].string.strip()
-
-    c.execute('insert into ' + table_name + ' (date, currency, buy, sell, nbu) values (?, ?, ?, ?, ?);',
-              (date, currency, buy, sell, nbu))
-    conn.commit()
+    sql_read = 'select * from ' + table_name + ' where date = ' + date
+    count = c.execute(sql_read)
+    data = count.fetchone()
+    if data is None:
+        c.execute('insert into ' + table_name + ' (date, currency, buy, sell, nbu) values (?, ?, ?, ?, ?);',
+                  (date, currency, buy, sell, nbu))
+        conn.commit()
+    else:
+        exit()
 
 c.close()
 conn.close()
+
+
