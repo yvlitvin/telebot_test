@@ -4,6 +4,10 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Conversa
     MessageHandler
 import telegram
 import sqlite3
+import datetime
+
+now = datetime.datetime.now()
+date = str(now.strftime("%d-%m-%Y"))
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.DEBUG)
