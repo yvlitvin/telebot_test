@@ -1,5 +1,5 @@
 import logging
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, User, Location
+from emoji import emojize
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, ConversationHandler, RegexHandler, Filters, \
     MessageHandler
 import telegram
@@ -15,6 +15,14 @@ logger = logging.getLogger(__name__)
 
 telebot = telegram.Bot('249430682:AAGPbuoGYllOPbPsZyFkuJHY7ooI_aLsAVU')
 LOCATION = range(4)
+
+
+# emoji
+logo_atm = emojize(":atm:", use_aliases=True)
+logo_bank = emojize(":bank:", use_aliases=True)
+logo_ce = emojize(":currency_exchange:", use_aliases=True)
+logo_clock = emojize(":clock3:", use_aliases=True)
+
 
 def start(bot, update):
     chat_id = update.message.chat_id
@@ -75,7 +83,7 @@ def main():
         states={
 
 
-            LOCATION: [MessageHandler([Filters.location], location),]
+            LOCATION: [MessageHandler([Filters.location], location)]
 
 
 
