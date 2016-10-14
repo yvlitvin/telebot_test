@@ -14,7 +14,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-telebot = telegram.Bot('249430682:AAGPbuoGYllOPbPsZyFkuJHY7ooI_aLsAVU')
+telebot = telegram.Bot('')
 LOCATION = range(4)
 
 
@@ -29,7 +29,7 @@ def start(bot, update):
     chat_id = update.message.chat_id
     location_keyboard = telegram.KeyboardButton(text=logo_bank+"Банкоматы", request_location=True)
     contact_keyboard = telegram.KeyboardButton(text="send_contact", request_contact=True)
-    #ce_keyboard = InlineKeyboardButton(logo_ce+"Курсы валют", callback_data=currency)
+    ce_keyboard = InlineKeyboardButton(logo_ce+"Курсы валют", callback_data=currency)
     custom_keyboard = [[location_keyboard, contact_keyboard], ['/currency']]
     reply_markup = telegram.ReplyKeyboardMarkup(custom_keyboard, resize_keyboard=True)
     bot.sendMessage(chat_id=chat_id,
@@ -59,7 +59,7 @@ def location(bot, update):
         city = row[3]
         face = row[6]
         situat = row[7]
-        update.message.reply_text(logo_atm + ', ' + city + ', ' + address + ', '+logo_clock + face + ', ' + situat)
+        update.message.reply_text(logo_atm + name+ ', ' + city + ', ' + address + ', '+logo_clock + face + ', ' + situat)
         bot.send_location(chat_id, lat_atm, lng_atm)
     c.close()
     conn.close()
