@@ -14,7 +14,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-telebot = telegram.Bot('')
+telebot = telegram.Bot('249430682:AAGPbuoGYllOPbPsZyFkuJHY7ooI_aLsAVU')
 LOCATION = range(4)
 
 
