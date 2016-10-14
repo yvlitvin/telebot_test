@@ -11,7 +11,7 @@ now = datetime.datetime.now()
 date = str(now.strftime("%d%m%Y"))
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.ERROR)
+                    level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 telebot = telegram.Bot('249430682:AAGPbuoGYllOPbPsZyFkuJHY7ooI_aLsAVU')
@@ -33,7 +33,7 @@ def start(bot, update):
     custom_keyboard = [[location_keyboard, contact_keyboard], ['/currency']]
     reply_markup = telegram.ReplyKeyboardMarkup(custom_keyboard, resize_keyboard=True)
     bot.sendMessage(chat_id=chat_id,
-                    text="Нажмите Банкоматы, чтобы получить список ближайших банокматов\n нажмите, чтобы",
+                    text="Нажмите Банкоматы, чтобы получить список ближайших банокматов",
                     reply_markup=reply_markup)
     return LOCATION
 
