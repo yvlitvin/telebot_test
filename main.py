@@ -11,7 +11,7 @@ now = datetime.datetime.now()
 date = str(now.strftime("%d%m%Y"))
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.DEBUG)
+                    level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 telebot = telegram.Bot('249430682:AAGPbuoGYllOPbPsZyFkuJHY7ooI_aLsAVU')
