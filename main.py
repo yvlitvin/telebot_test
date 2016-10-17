@@ -6,6 +6,7 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Conversa
 import telegram
 import sqlite3
 import datetime
+import config
 
 now = datetime.datetime.now()
 date = str(now.strftime("%d%m%Y"))
@@ -14,7 +15,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-telebot = telegram.Bot('249430682:AAGPbuoGYllOPbPsZyFkuJHY7ooI_aLsAVU')
+#telebot = telegram.Bot(config.token)
 LOCATION = range(4)
 
 
@@ -87,7 +88,7 @@ def error(bot, update, error):
 
 def main():
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater("249430682:AAGPbuoGYllOPbPsZyFkuJHY7ooI_aLsAVU")
+    updater = Updater(config.token)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
