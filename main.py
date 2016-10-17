@@ -33,7 +33,7 @@ def start(bot, update):
     custom_keyboard = [[location_keyboard, contact_keyboard], ['/currency']]
     reply_markup = telegram.ReplyKeyboardMarkup(custom_keyboard, resize_keyboard=True)
     bot.sendMessage(chat_id=chat_id,
-                    text="Нажмите Банкоматы, чтобы получить список ближайших банокматов",
+                    text="Нажмите Банкоматы, чтобы получить список ближайших банкоматов",
                     reply_markup=reply_markup)
     return LOCATION
 
