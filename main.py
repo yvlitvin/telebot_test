@@ -28,6 +28,9 @@ logo_clock = emojize(":clock3:", use_aliases=True)
 
 def start(bot, update):
     chat_id = update.message.chat_id
+    user = update.message.from_user
+    logger.info("Hello  of %s %f "
+                % (user.first_name, user.last_name))
     location_keyboard = telegram.KeyboardButton(text=logo_bank+"Банкоматы", request_location=True)
     contact_keyboard = telegram.KeyboardButton(text="send_contact", request_contact=True)
     ce_keyboard = InlineKeyboardButton(logo_ce+"Курсы валют", callback_data=currency)
