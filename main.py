@@ -73,6 +73,8 @@ def cancel(bot, update):
 
 def currency(bot, update):
     chat_id = update.message.chat_id
+    user = update.message.from_user
+    logger.info("Currency rates for  %s %s " % (user.first_name, user.last_name))
     conn = sqlite3.connect("atm_numbers.sqlite")
     c = conn.cursor()
     c.execute('SELECT * FROM currency where date = ' + date)
