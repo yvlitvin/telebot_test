@@ -1,0 +1,4 @@
+emoji==0.3.9
+requests==2.11.1
+python_telegram_bot==5.1.1
+beautifulsoup4==4.5.1
