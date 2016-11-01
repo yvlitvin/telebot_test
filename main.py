@@ -118,9 +118,9 @@ def main():
 
     # log all errors
     dp.add_error_handler(error)
-    updater.dispatcher.add_handler(CommandHandler('start', start))
-    updater.dispatcher.add_handler(CommandHandler('currency', currency))
-    updater.dispatcher.add_handler(MessageHandler('location', location))
+    #updater.dispatcher.add_handler(CommandHandler('start', start))
+    #updater.dispatcher.add_handler(CommandHandler('currency', currency))
+   # dp.add_handler(('location', location))
     # Start the Bot
     updater.start_polling(timeout=30)
 
