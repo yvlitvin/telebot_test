@@ -62,7 +62,8 @@ def location(bot, update):
         city = row[3]
         face = row[6]
         situat = row[7]
-        update.message.reply_text(logo_atm + name+ ', ' + city + ', ' + address + ', '+logo_clock + face + ', ' + situat)
+        #update.message.reply_text(logo_atm + name+ ', ' + city + ', ' + address + ', '+logo_clock + face + ', ' + situat)
+        bot.sendMessage(chat_id=chat_id, text=logo_atm + name+ ', ' + city + ', ' + address + ', '+logo_clock + face + ', ' + situat)
         bot.send_location(chat_id, lat_atm, lng_atm)
     c.close()
     conn.close()
