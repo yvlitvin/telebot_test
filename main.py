@@ -77,7 +77,7 @@ def currency(bot, update):
     logger.info("Currency rates for  %s %s " % (user.first_name, user.last_name))
     conn = sqlite3.connect("atm_numbers.sqlite")
     c = conn.cursor()
-    c.execute('SELECT * FROM currency where date = ' + date)
+    c.execute('SELECT * FROM currency where date = ' + "'"+date+"'")
     for row in c:
         curr = row[1]
         sale_sel = row[2]
