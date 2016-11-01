@@ -12,7 +12,7 @@ now = datetime.datetime.now()
 date = str(now.strftime("%d%m%Y"))
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO)
+                    level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 #telebot = telegram.Bot(config.token)
@@ -120,7 +120,7 @@ def main():
     dp.add_error_handler(error)
     updater.dispatcher.add_handler(CommandHandler('start', start))
     updater.dispatcher.add_handler(CommandHandler('currency', currency))
-    updater.dispatcher.add_handler(CommandHandler('location', location))
+    updater.dispatcher.add_handler(MessageHandler('location', location))
     # Start the Bot
     updater.start_polling(timeout=30)
 
