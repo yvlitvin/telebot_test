@@ -99,8 +99,7 @@ def main():
 
     # Add conversation handler with the states GENDER, PHOTO, LOCATION and BIO
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('start', start)],
-
+        entry_points=[CommandHandler('start', start)], run_async_timeout=60, allow_reentry=True,
         states={
 
 
@@ -111,6 +110,7 @@ def main():
         },
 
         fallbacks=[CommandHandler('cancel', cancel)]
+
     )
 
     dp.add_handler(conv_handler)
