@@ -45,8 +45,8 @@ def location(bot, update):
     user = update.message.from_user
     chat_id = update.message.chat_id
     user_location = update.message.location
-    logger.info("Location of %s: %f / %f"
-                % (user.first_name, user_location.latitude, user_location.longitude))
+    logger.info("Location of %s %s: %f / %f"
+                % (user.first_name, user.last_name, user_location.latitude, user_location.longitude))
 
     conn = sqlite3.connect("atm_numbers.sqlite")
     c = conn.cursor()
