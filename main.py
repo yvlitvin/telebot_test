@@ -104,7 +104,7 @@ def main():
         states={
 
 
-            LOCATION: [MessageHandler([Filters.location], location)]
+            LOCATION: [MessageHandler(Filters.location, location)]
 
 
 
@@ -120,7 +120,7 @@ def main():
     dp.add_error_handler(error)
     #updater.dispatcher.add_handler(CommandHandler('start', start))
     dp.add_handler(CommandHandler('currency', currency))
-    dp.add_handler(MessageHandler([Filters.location], location))
+    dp.add_handler(MessageHandler(Filters.location, location))
     # Start the Bot
     updater.start_polling(timeout=30)
 
