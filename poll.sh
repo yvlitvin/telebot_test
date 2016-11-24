@@ -12,7 +12,7 @@ function vote {
      curl -s -b "$FILE_COOKIE" -d"votes[]=$VOTE&poll_id=$POLL_ID&token=$token" -X POST http://poll.ru/vote.php
 }
 
-x=100 #сколько голосов накрутить
+x=500 #сколько голосов накрутить
 i=1
 while [ $i -le $x ]; do
      vote
