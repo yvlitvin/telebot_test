@@ -7,9 +7,9 @@ function vote {
      rm "$FILE_COOKIE" &> /dev/null #Чистим куки
      #Получаем уникальный токен
      token=`curl -s -D "$FILE_COOKIE" -d "poll_key=$POLL_KEY" http://poll.ru/index.php | tail -c 34 |cut -c -32`
-     echo $token
+     #echo $token
      #Голосуем
-     curl -s -b "$FILE_COOKIE" -d"votes[]=$VOTE&poll_id=$POLL_ID&token=$token" -X POST http://poll.ru/vote.php
+     curl -s -b "$FILE_COOKIE" -d"votes[]=$VOTE&poll_id=$POLL_ID&token=$token" -X POST http://poll.ru/vote.php &> /dev/null
 }
 
 x=500 #сколько голосов накрутить
